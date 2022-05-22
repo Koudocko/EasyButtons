@@ -3,10 +3,13 @@
 
 class Button{
 public:
+    Button(unsigned long pin, unsigned long delay, void (*func)()) : pinNum{pin}, pushDelay{delay}, callback{func}{}
+    bool get();
+    void run();
 
 private:
-    bool state;
-    unsigned long lightLength, timeStart{}, timeElapsed{};
+    void (*callback)();
+    unsigned long pushDelay, timeLast{}, timeCurr{};
     unsigned long pinNum;
 };
 
